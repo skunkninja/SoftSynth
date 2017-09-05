@@ -35,6 +35,7 @@
         <MODULEPATH id="juce_audio_devices" path="../Juce/modules"/>
         <MODULEPATH id="juce_audio_formats" path="../Juce/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../Juce/modules"/>
       </MODULEPATHS>
     </VS2015>
     <VS2013 targetFolder="Builds/VisualStudio2013">
@@ -58,14 +59,41 @@
         <MODULEPATH id="juce_audio_formats" path="../Juce/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../Juce/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../Juce/modules"/>
       </MODULEPATHS>
     </VS2013>
+    <ANDROIDSTUDIO targetFolder="Builds/AndroidStudio" androidSDKPath="" androidNDKPath=""
+                   androidScreenOrientation="portrait">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" androidArchitectures="armeabi armeabi-v7a x86" isDebug="1"
+                       optimisation="1" targetName="SoftSynth"/>
+        <CONFIGURATION name="Release" androidArchitectures="armeabi armeabi-v7a x86"
+                       isDebug="0" optimisation="3" targetName="SoftSynth"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="../Juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../Juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../Juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../Juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../Juce/modules"/>
+        <MODULEPATH id="juce_events" path="../Juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../Juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../Juce/modules"/>
+        <MODULEPATH id="juce_core" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../Juce/modules"/>
+      </MODULEPATHS>
+    </ANDROIDSTUDIO>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
