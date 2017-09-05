@@ -17,11 +17,13 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_HEADER_CB87035FA43504BB__
-#define __JUCE_HEADER_CB87035FA43504BB__
+#ifndef __JUCE_HEADER_DC06BDD7EC824B91__
+#define __JUCE_HEADER_DC06BDD7EC824B91__
 
 //[Headers]     -- You can add your own extra header files here --
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
+#include "juce_audio_devices\juce_audio_devices.h"
+#include "juce_audio_utils\juce_audio_utils.h"
 //[/Headers]
 
 
@@ -29,18 +31,18 @@
 //==============================================================================
 /**
                                                                     //[Comments]
-    An auto-generated component, created by the Projucer.
+    An auto-generated component, created by the Introjucer.
 
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class MainContentComponent  : public Component,
-                              public ButtonListener
+class CAudioSetup  : public Component,
+                     public ComboBoxListener
 {
 public:
     //==============================================================================
-    MainContentComponent ();
-    ~MainContentComponent();
+    CAudioSetup (AudioDeviceManager& deviceManager_);
+    ~CAudioSetup();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
@@ -48,24 +50,32 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
-    void buttonClicked (Button* buttonThatWasClicked) override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    AudioDeviceManager audioDeviceManager;
+    AudioDeviceManager& deviceManager;
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<TextButton> textButton;
+    ScopedPointer<GroupComponent> groupComponent2;
+    ScopedPointer<GroupComponent> groupComponent;
+    ScopedPointer<AudioDeviceSelectorComponent> component;
+    ScopedPointer<Label> label;
+    ScopedPointer<ComboBox> comboBox;
+    ScopedPointer<Label> label2;
+    ScopedPointer<ComboBox> comboBox2;
+    ScopedPointer<Label> label3;
+    ScopedPointer<ComboBox> comboBox3;
 
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CAudioSetup)
 };
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
 
-#endif   // __JUCE_HEADER_CB87035FA43504BB__
+#endif   // __JUCE_HEADER_DC06BDD7EC824B91__
