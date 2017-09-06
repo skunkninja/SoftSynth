@@ -75,6 +75,8 @@ public:
 
 protected:
     //CMidiLayer *pSoftSynth;
+	float sinVal[96];
+	int leftIndex, rightIndex;
 };
 
 #endif

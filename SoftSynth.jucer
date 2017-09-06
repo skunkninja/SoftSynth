@@ -5,6 +5,12 @@
               jucerVersion="4.3.1">
   <MAINGROUP id="DJFmZg" name="SoftSynth">
     <GROUP id="{8550D751-C376-854C-B685-6E47ED370CB0}" name="Source">
+      <GROUP id="{8C234CAC-4B97-1836-9587-B2939F0DC60F}" name="DSPIns">
+        <FILE id="wof8ab" name="DSP_Instruction.cpp" compile="1" resource="0"
+              file="Source/DSPIns/DSP_Instruction.cpp"/>
+        <FILE id="FneACy" name="DSP_Instruction.h" compile="0" resource="0"
+              file="Source/DSPIns/DSP_Instruction.h"/>
+      </GROUP>
       <FILE id="h0Uwpk" name="AudioSetup.cpp" compile="1" resource="0" file="Source/AudioSetup.cpp"/>
       <FILE id="eWFoVe" name="AudioSetup.h" compile="0" resource="0" file="Source/AudioSetup.h"/>
       <FILE id="yTFY1x" name="JuceAudioCallBack.cpp" compile="1" resource="0"
@@ -25,7 +31,7 @@
     <VS2015 targetFolder="Builds/VisualStudio2015">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="SoftSynth"/>
+                       isDebug="1" optimisation="1" targetName="SoftSynth" headerPath="../../Source/DSPIns"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="0" optimisation="3" targetName="SoftSynth"/>
       </CONFIGURATIONS>

@@ -40,6 +40,8 @@ void DSP_EG(STR_DSP_EG *pEG)
     }
 }
 
+#define MAX_SAMPLE_BITS 24
+
 int DoLineInterpolation(int val1, int val2, int iFracAddr)
 {
     //val1 and val2 is 16bit signed value. iFracAddr is 16bit signed value.

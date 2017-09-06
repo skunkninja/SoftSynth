@@ -1,8 +1,14 @@
 #include "JuceAudioCallBack.h"
-
+#include "DSP_Instruction.h"
 
 CJuceAudioCallBack::CJuceAudioCallBack(void)
 {
+	int i;
+	for (i = 0; i < numElementsInArray(sinVal); i++)
+	{
+		sinVal[i] = sin(i*3.1415926 * 4 / numElementsInArray(sinVal));
+	}
+	leftIndex = rightIndex = 0;
 }
 
 
@@ -34,7 +40,28 @@ void CJuceAudioCallBack::audioDeviceIOCallback (const float** inputChannelData,
         {
             if (outputChannelData[j] != 0)
             {
-                sampleval = 0.0f;
+				int *pval = nullptr;
+				switch (j)
+				{
+				case 0:
+					pval = &leftIndex;
+					sampleval = sinVal[*pval];
+					break;
+				case 1:
+					pval = &rightIndex;
+					sampleval = sinVal[*pval/2];
+					break;
+				default:
+					break;
+				}
+
+				if (pval == nullptr)
+				{
+					break;
+				}
+				(*pval)++;
+				
+				*pval = DSP_LOOP(*pval, 0, numElementsInArray(sinVal));
                 outputChannelData[j][i] = sampleval;
             }
         }

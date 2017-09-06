@@ -62,6 +62,8 @@ MainContentComponent::MainContentComponent ()
 MainContentComponent::~MainContentComponent()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+	audioDeviceManager.removeAudioCallback(&juceAudioCallBack);
+	audioDeviceManager.removeMidiInputCallback(String::empty, &juceMidiCallBack);
     //[/Destructor_pre]
 
     textButton = nullptr;
