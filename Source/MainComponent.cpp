@@ -47,6 +47,9 @@ MainContentComponent::MainContentComponent ()
     currentSetup.bufferSize = 512;
     currentSetup.sampleRate = 48000.0;
     audioDeviceManager.setAudioDeviceSetup(currentSetup,true);
+
+	audioDeviceManager.addAudioCallback(&juceAudioCallBack);
+	audioDeviceManager.addMidiInputCallback(String::empty, &juceMidiCallBack);
     //[/UserPreSize]
 
     setSize (600, 400);
