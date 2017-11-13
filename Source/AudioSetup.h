@@ -22,8 +22,8 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
-#include "juce_audio_devices\juce_audio_devices.h"
-#include "juce_audio_utils\juce_audio_utils.h"
+#include "juce_audio_devices/juce_audio_devices.h"
+#include "juce_audio_utils/juce_audio_utils.h"
 //[/Headers]
 
 

@@ -2,7 +2,7 @@
 #define JUCE_AUDIO_CALL_BACK_H_INCLUDE
 
 #include "JuceHeader.h"
-#include "juce_audio_devices\juce_audio_devices.h"
+#include "juce_audio_devices/juce_audio_devices.h"
 
 class JUCE_API CJuceAudioCallBack :
     public AudioIODeviceCallback
