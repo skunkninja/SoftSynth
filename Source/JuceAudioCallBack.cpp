@@ -9,6 +9,7 @@ CJuceAudioCallBack::CJuceAudioCallBack(void)
 		sinVal[i] = sin(i*3.1415926 * 4 / numElementsInArray(sinVal));
 	}
 	leftIndex = rightIndex = 0;
+    playEnable = false;
 }
 
 
@@ -49,36 +50,49 @@ void CJuceAudioCallBack::audioDeviceIOCallback (const float** inputChannelData,
     float sampleval;
     
     //从效率来说，一个通道一个通道的填比较好，不过这儿只是测试，就按采样来填。
+
     for (int i = 0; i < numSamples; ++i)
     {
         for(int j = 0;j < numOutputChannels;j++)
         {
-            if (outputChannelData[j] != 0)
+            if(playEnable)
             {
-				int *pval = nullptr;
-				switch (j)
-				{
-				case 0:
-					pval = &leftIndex;
-					sampleval = sinVal[*pval];
-					break;
-				case 1:
-					pval = &rightIndex;
-					sampleval = sinVal[*pval/2];
-					break;
-				default:
-					break;
-				}
-
-				if (pval == nullptr)
-				{
-					break;
-				}
-				(*pval)++;
-				
-				*pval = DSP_LOOP(*pval, 0, numElementsInArray(sinVal));
-                outputChannelData[j][i] = sampleval;
+                if (outputChannelData[j] != 0)
+                {
+                    int *pval = nullptr;
+                    switch (j)
+                    {
+                        case 0:
+                            pval = &leftIndex;
+                            sampleval = sinVal[*pval];
+                            break;
+                        case 1:
+                            pval = &rightIndex;
+                            sampleval = sinVal[*pval/2];
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                    if (pval == nullptr)
+                    {
+                        break;
+                    }
+                    (*pval)++;
+                    
+                    *pval = DSP_LOOP(*pval, 0, numElementsInArray(sinVal));
+                    outputChannelData[j][i] = sampleval;
+                }
+            }
+            else
+            {
+                outputChannelData[j][i] = 0.0f;
             }
         }
     }
+}
+
+void CJuceAudioCallBack::setPlayEnable(bool enable)
+{
+    playEnable = enable;
 }

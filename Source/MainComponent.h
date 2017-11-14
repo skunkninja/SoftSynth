@@ -23,7 +23,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JuceAudioCallBack.h"
-#include "JuceMidiCallBack.h"
+#include "JuceMidiCallback.h"
 //[/Headers]
 
 
@@ -37,6 +37,7 @@
                                                                     //[/Comments]
 */
 class MainContentComponent  : public Component,
+                              public MessageListener,
                               public ButtonListener
 {
 public:
@@ -46,6 +47,7 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void buttonStateChanged (Button* buttonThatChanged) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -59,10 +61,14 @@ private:
     AudioDeviceManager audioDeviceManager;
 	CJuceAudioCallBack juceAudioCallBack;
 	CJuceMidiCallback  juceMidiCallBack;
+    
+    //Message handler
+    void handleMessage(const Message& message) override;
     //[/UserVariables]
 
     //==============================================================================
     ScopedPointer<TextButton> textButton;
+    ScopedPointer<TextButton> m_HoldPlay;
 
 
     //==============================================================================

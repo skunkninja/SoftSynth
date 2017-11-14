@@ -4,6 +4,17 @@
               bundleIdentifier="com.yourcompany.SoftSynth" includeBinaryInAppConfig="1"
               jucerVersion="4.3.1">
   <MAINGROUP id="DJFmZg" name="SoftSynth">
+    <GROUP id="{FDD1A3A5-EB41-C7E5-C148-D373CFB53A88}" name="rwalib">
+      <GROUP id="{CFD0C4F6-4CBB-2E69-3617-CE7659E41A08}" name="juce">
+        <FILE id="FmGsPZ" name="CustomMessage.cpp" compile="1" resource="0"
+              file="../rwalib/juce/CustomMessage.cpp"/>
+        <FILE id="anxVkC" name="CustomMessage.h" compile="0" resource="0" file="../rwalib/juce/CustomMessage.h"/>
+        <FILE id="GmyDBa" name="rw_WinMacBasic.cpp" compile="1" resource="0"
+              file="../rwalib/juce/rw_WinMacBasic.cpp"/>
+        <FILE id="hYMpDe" name="rw_WinMacBasic.h" compile="0" resource="0"
+              file="../rwalib/juce/rw_WinMacBasic.h"/>
+      </GROUP>
+    </GROUP>
     <GROUP id="{8550D751-C376-854C-B685-6E47ED370CB0}" name="Source">
       <GROUP id="{8C234CAC-4B97-1836-9587-B2939F0DC60F}" name="DSPIns">
         <FILE id="wof8ab" name="DSP_Instruction.cpp" compile="1" resource="0"

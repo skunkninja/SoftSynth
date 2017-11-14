@@ -72,11 +72,13 @@ public:
 
     /** Called to indicate that the device has stopped. */
     void audioDeviceStopped() override;
-
+    
+    void setPlayEnable(bool enable);
 protected:
     //CMidiLayer *pSoftSynth;
 	float sinVal[96];
 	int leftIndex, rightIndex;
+    bool playEnable;
 };
 
 #endif

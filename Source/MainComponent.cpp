@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "AudioSetup.h"
+#include "CustomMessage.h"
 //[/Headers]
 
 #include "MainComponent.h"
@@ -29,6 +30,7 @@
 
 //==============================================================================
 MainContentComponent::MainContentComponent ()
+:juceMidiCallBack(this)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -36,6 +38,10 @@ MainContentComponent::MainContentComponent ()
     addAndMakeVisible (textButton = new TextButton ("new button"));
     textButton->setButtonText (TRANS("Audio Setup"));
     textButton->addListener (this);
+
+    addAndMakeVisible (m_HoldPlay = new TextButton ("new button2"));
+    m_HoldPlay->setButtonText (TRANS("Hold To Play"));
+    m_HoldPlay->addListener (this);
 
 
     //[UserPreSize]
@@ -52,7 +58,7 @@ MainContentComponent::MainContentComponent ()
 	audioDeviceManager.addMidiInputCallback(String::empty, &juceMidiCallBack);
     //[/UserPreSize]
 
-    setSize (600, 400);
+    setSize (320, 480);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -67,6 +73,7 @@ MainContentComponent::~MainContentComponent()
     //[/Destructor_pre]
 
     textButton = nullptr;
+    m_HoldPlay = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -90,7 +97,8 @@ void MainContentComponent::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    textButton->setBounds (464, 8, 120, 32);
+    textButton->setBounds (8, 16, 120, 32);
+    m_HoldPlay->setBounds (8, 56, 120, 32);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -114,6 +122,11 @@ void MainContentComponent::buttonClicked (Button* buttonThatWasClicked)
 		//midioutDevice = audioDeviceManager.getDefaultMidiOutput();
         //[/UserButtonCode_textButton]
     }
+    else if (buttonThatWasClicked == m_HoldPlay)
+    {
+        //[UserButtonCode_m_HoldPlay] -- add your button handler code here..
+        //[/UserButtonCode_m_HoldPlay]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -122,6 +135,41 @@ void MainContentComponent::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void MainContentComponent::buttonStateChanged (Button* buttonStateChanged)
+{
+    if (buttonStateChanged == m_HoldPlay)
+    {
+        juce::Button::ButtonState state = m_HoldPlay->getState();
+        switch (state) {
+            case juce::Button::buttonNormal:
+                juceAudioCallBack.setPlayEnable(false);
+                break;
+            case juce::Button::buttonDown:
+                juceAudioCallBack.setPlayEnable(true);
+                break;
+            case juce::Button::buttonOver:
+                juceAudioCallBack.setPlayEnable(false);
+                break;
+        }
+    }
+}
+
+void MainContentComponent::handleMessage(const Message& message)
+{
+    CCustomMessage *tmpMessage = (CCustomMessage *)&message;
+    int type = tmpMessage->getType();
+    
+    switch (type) {
+        case MSG_SOUND_ON:
+            juceAudioCallBack.setPlayEnable(true);
+            break;
+        case MSG_SOUND_OFF:
+            juceAudioCallBack.setPlayEnable(false);
+            break;
+        default:
+            break;
+    }
+}
 //[/MiscUserCode]
 
 
@@ -135,12 +183,15 @@ void MainContentComponent::buttonClicked (Button* buttonThatWasClicked)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="MainContentComponent" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component, public MessageListener" constructorParams=""
+                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
+                 overlayOpacity="0.330" fixedSize="1" initialWidth="320" initialHeight="480">
   <BACKGROUND backgroundColour="ffffffff"/>
   <TEXTBUTTON name="new button" id="3a1af5155dc28d3f" memberName="textButton"
-              virtualName="" explicitFocusOrder="0" pos="464 8 120 32" buttonText="Audio Setup"
+              virtualName="" explicitFocusOrder="0" pos="8 16 120 32" buttonText="Audio Setup"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button2" id="a10dd133b93ce124" memberName="m_HoldPlay"
+              virtualName="" explicitFocusOrder="0" pos="8 56 120 32" buttonText="Hold To Play"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 

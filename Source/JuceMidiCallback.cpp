@@ -1,8 +1,9 @@
 #include "JuceMidiCallback.h"
+#include "CustomMessage.h"
 
-
-CJuceMidiCallback::CJuceMidiCallback(void)
+CJuceMidiCallback::CJuceMidiCallback(MessageListener *listener)
 {
+    localListener = listener;
 }
 
 
@@ -18,11 +19,17 @@ void CJuceMidiCallback::handleIncomingMidiMessage(MidiInput* source, const MidiM
     }
     else
     {
+        Message *pMsg;
         if(message.isNoteOn())
         {
+
+            pMsg = new CCustomMessage(MSG_SOUND_ON, 0, 0, 0, NULL);//
+            localListener->postMessage(pMsg);
         }
         else if(message.isNoteOff())
         {
+            pMsg = new CCustomMessage(MSG_SOUND_OFF, 0, 0, 0, NULL);//
+            localListener->postMessage(pMsg);
         }
     }
 }
