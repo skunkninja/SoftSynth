@@ -42,9 +42,11 @@
     <VS2015 targetFolder="Builds/VisualStudio2015">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="SoftSynth" headerPath="../../Source/DSPIns"/>
+                       isDebug="1" optimisation="1" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
+                       characterSet="Unicode"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="SoftSynth"/>
+                       isDebug="0" optimisation="3" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
+                       characterSet="Unicode"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../Juce/modules"/>
@@ -66,9 +68,11 @@
     <VS2013 targetFolder="Builds/VisualStudio2013">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="SoftSynth"/>
+                       isDebug="1" optimisation="1" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
+                       characterSet="Unicode"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="SoftSynth"/>
+                       isDebug="0" optimisation="3" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
+                       characterSet="Unicode"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="../Juce/modules"/>
