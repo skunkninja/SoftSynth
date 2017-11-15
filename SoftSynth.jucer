@@ -117,8 +117,10 @@
                   iosBackgroundAudio="0" iosDevelopmentTeamID="CTTD466BHP" customPList="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&#10;&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;&#10;&lt;plist&gt;&#10;  &lt;dict&gt;&#9;&#10;    &lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;&#10;    &#9;&lt;string&gt;Record test...&lt;/string&gt;&#10;  &lt;/dict&gt;&#10;&lt;/plist&gt;"
                   microphonePermissionNeeded="1" prebuildCommand="">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SoftSynth"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SoftSynth"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SoftSynth"
+                       iosCompatibility="8.0"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SoftSynth"
+                       iosCompatibility="8.0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="../Juce/modules"/>
@@ -137,6 +139,30 @@
         <MODULEPATH id="juce_audio_basics" path="../Juce/modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
+    <ANDROIDSTUDIO targetFolder="Builds/AndroidStudio" androidSDKPath="" androidNDKPath="">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" androidArchitectures="armeabi armeabi-v7a x86" isDebug="1"
+                       optimisation="1" targetName="SoftSynth"/>
+        <CONFIGURATION name="Release" androidArchitectures="armeabi armeabi-v7a x86"
+                       isDebug="0" optimisation="3" targetName="SoftSynth"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="../Juce/modules"/>
+        <MODULEPATH id="juce_opengl" path="../Juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../Juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../Juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../Juce/modules"/>
+        <MODULEPATH id="juce_events" path="../Juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../Juce/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../Juce/modules"/>
+        <MODULEPATH id="juce_core" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../Juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../Juce/modules"/>
+      </MODULEPATHS>
+    </ANDROIDSTUDIO>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
