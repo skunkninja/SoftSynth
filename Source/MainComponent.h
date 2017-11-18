@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.1
+  Created with Projucer version: 5.1.2
 
   ------------------------------------------------------------------------------
 
@@ -17,8 +17,7 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_HEADER_CB87035FA43504BB__
-#define __JUCE_HEADER_CB87035FA43504BB__
+#pragma once
 
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -38,7 +37,7 @@
 */
 class MainContentComponent  : public Component,
                               public MessageListener,
-                              public ButtonListener
+                              public Button::Listener
 {
 public:
     //==============================================================================
@@ -61,7 +60,7 @@ private:
     AudioDeviceManager audioDeviceManager;
 	CJuceAudioCallBack juceAudioCallBack;
 	CJuceMidiCallback  juceMidiCallBack;
-    
+
     //Message handler
     void handleMessage(const Message& message) override;
     //[/UserVariables]
@@ -77,5 +76,3 @@ private:
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
-
-#endif   // __JUCE_HEADER_CB87035FA43504BB__

@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.1
+  Created with Projucer version: 5.1.2
 
   ------------------------------------------------------------------------------
 
@@ -26,11 +26,41 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+
+class CAudioSetupWindow;
+int audioLastPosX, audioLastPosY;
+static CAudioSetupWindow *pAudioSetupWin = nullptr;
+//---
+class CAudioSetupWindow : public DialogWindow
+{
+    CAudioSetup *setupwindow;
+public:
+    CAudioSetupWindow(AudioDeviceManager& deviceManager_)
+    : DialogWindow("Effect setting",
+                   Colours::floralwhite,
+                   false)
+    {
+        //setContentComponent(effectcomponent = new(CEffectSend), true, true);
+        setContentOwned(setupwindow = new CAudioSetup(deviceManager_), true);
+    }
+    ~CAudioSetupWindow()
+    {
+        delete setupwindow;
+        pAudioSetupWin = nullptr;
+    }
+    void closeButtonPressed()
+    {
+        audioLastPosX = getBounds().getX();
+        audioLastPosY = getBounds().getY();
+        delete this;
+    }
+};
+
 //[/MiscUserDefs]
 
 //==============================================================================
 MainContentComponent::MainContentComponent ()
-:juceMidiCallBack(this)
+    : juceMidiCallBack(this)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -46,7 +76,22 @@ MainContentComponent::MainContentComponent ()
 
     //[UserPreSize]
     AudioDeviceManager::AudioDeviceSetup currentSetup;
-    audioDeviceManager.initialise(2,2,NULL,true);
+
+    RuntimePermissions::request (RuntimePermissions::recordAudio,
+                                 [this] (bool wasGranted)
+                                 {
+                                     if (! wasGranted)
+                                     {
+                                         // e.g. display an error or initialise with 0 input channels
+                                         audioDeviceManager.initialise (0, 2, nullptr, true, String(), nullptr);
+                                     }
+                                     else
+                                     {
+                                         audioDeviceManager.initialise (2, 2, nullptr, true, String(), nullptr);
+                                     }
+                                 }
+                                 );
+
     audioDeviceManager.getAudioDeviceSetup(currentSetup);
 
     //Set current buffer size to 128, and current sample rate to 48k.
@@ -77,6 +122,10 @@ MainContentComponent::~MainContentComponent()
 
 
     //[Destructor]. You can add your own custom destruction code here..
+    if (pAudioSetupWin != nullptr)
+    {
+        delete pAudioSetupWin;
+    }
     //[/Destructor]
 }
 
@@ -111,14 +160,21 @@ void MainContentComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == textButton)
     {
         //[UserButtonCode_textButton] -- add your button handler code here..
-		CAudioSetup dlg(audioDeviceManager);
-
-		if(DialogWindow::showModalDialog(L"Midi input device selection",
-			&dlg,
-			this,
-			Colours::azure,true) == 1)
+        if (pAudioSetupWin == nullptr)
         {
+            pAudioSetupWin = new CAudioSetupWindow(audioDeviceManager);
+            int tw, th;
+            tw = pAudioSetupWin->getWidth();
+            th = pAudioSetupWin->getHeight();
+            //pEffectSendWindow->centreAroundComponent (this, pEffectSendWindow->getWidth(), pEffectSendWindow->getHeight());
+            pAudioSetupWin->setBounds(audioLastPosX , audioLastPosY, pAudioSetupWin->getWidth(), pAudioSetupWin->getHeight());
+            pAudioSetupWin->setVisible(true);
         }
+        else
+        {
+            pAudioSetupWin->toFront(true);
+        }
+
 		//midioutDevice = audioDeviceManager.getDefaultMidiOutput();
         //[/UserButtonCode_textButton]
     }
@@ -158,7 +214,7 @@ void MainContentComponent::handleMessage(const Message& message)
 {
     CCustomMessage *tmpMessage = (CCustomMessage *)&message;
     int type = tmpMessage->getType();
-    
+
     switch (type) {
         case MSG_SOUND_ON:
             juceAudioCallBack.setPlayEnable(true);
@@ -184,8 +240,9 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="MainContentComponent" componentName=""
                  parentClasses="public Component, public MessageListener" constructorParams=""
-                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330" fixedSize="1" initialWidth="320" initialHeight="480">
+                 variableInitialisers="juceMidiCallBack(this)" snapPixels="8"
+                 snapActive="1" snapShown="1" overlayOpacity="0.330" fixedSize="1"
+                 initialWidth="320" initialHeight="480">
   <BACKGROUND backgroundColour="ffffffff"/>
   <TEXTBUTTON name="new button" id="3a1af5155dc28d3f" memberName="textButton"
               virtualName="" explicitFocusOrder="0" pos="8 16 120 32" buttonText="Audio Setup"
