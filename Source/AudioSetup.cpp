@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.1
+  Created with Projucer version: 5.2.0
 
   ------------------------------------------------------------------------------
 
@@ -39,14 +39,15 @@ CAudioSetup::CAudioSetup (AudioDeviceManager& deviceManager_)
     addAndMakeVisible (groupComponent = new GroupComponent ("new group",
                                                             TRANS("Audio device setup")));
 
-    addAndMakeVisible (component = new juce::AudioDeviceSelectorComponent (deviceManager, 0, 2, 0, 2, true, false, true, false));
+    addAndMakeVisible (component = new AudioDeviceSelectorComponent (deviceManager, 0, 2, 0, 2, true, true, true, false));
     component->setName ("new component");
 
     addAndMakeVisible (label = new Label ("new label",
                                           TRANS("Tone generator buffer size:")));
-    label->setFont (Font (15.00f, Font::plain));
+    label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
+    label->setColour (Label::textColourId, Colours::white);
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -62,7 +63,7 @@ CAudioSetup::CAudioSetup (AudioDeviceManager& deviceManager_)
 
     addAndMakeVisible (label2 = new Label ("new label",
                                            TRANS("Thread number:")));
-    label2->setFont (Font (15.00f, Font::plain));
+    label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
     label2->setEditable (false, false, false);
     label2->setColour (TextEditor::textColourId, Colours::black);
@@ -81,7 +82,7 @@ CAudioSetup::CAudioSetup (AudioDeviceManager& deviceManager_)
 
     addAndMakeVisible (label3 = new Label ("new label",
                                            TRANS("Tone generator numbers per thread:")));
-    label3->setFont (Font (15.00f, Font::plain));
+    label3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label3->setJustificationType (Justification::centredLeft);
     label3->setEditable (false, false, false);
     label3->setColour (TextEditor::textColourId, Colours::black);
@@ -101,7 +102,7 @@ CAudioSetup::CAudioSetup (AudioDeviceManager& deviceManager_)
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (600, 480);
+    setSize (600, 600);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -134,7 +135,7 @@ void CAudioSetup::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::white);
+    g.fillAll (Colour (0xff001836));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -145,15 +146,15 @@ void CAudioSetup::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    groupComponent2->setBounds (8, 384, 576, 88);
-    groupComponent->setBounds (8, 0, 576, 384);
-    component->setBounds (16, 16, 560, 360);
-    label->setBounds (16, 400, 184, 24);
-    comboBox->setBounds (208, 400, 88, 24);
-    label2->setBounds (368, 400, 112, 24);
-    comboBox2->setBounds (488, 400, 64, 24);
-    label3->setBounds (240, 432, 240, 24);
-    comboBox3->setBounds (488, 432, 64, 24);
+    groupComponent2->setBounds (8, 504, 576, 88);
+    groupComponent->setBounds (8, 0, 576, 504);
+    component->setBounds (16, 16, 560, 480);
+    label->setBounds (16, 520, 184, 24);
+    comboBox->setBounds (208, 520, 88, 24);
+    label2->setBounds (368, 520, 112, 24);
+    comboBox2->setBounds (488, 520, 64, 24);
+    label3->setBounds (240, 552, 240, 24);
+    comboBox3->setBounds (488, 552, 64, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -202,40 +203,41 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component" constructorParams="AudioDeviceManager&amp; deviceManager_"
                  variableInitialisers="deviceManager(deviceManager_)" snapPixels="8"
                  snapActive="1" snapShown="1" overlayOpacity="0.330" fixedSize="1"
-                 initialWidth="600" initialHeight="480">
-  <BACKGROUND backgroundColour="ffffffff"/>
+                 initialWidth="600" initialHeight="600">
+  <BACKGROUND backgroundColour="ff001836"/>
   <GROUPCOMPONENT name="new group" id="542e7422abe0aec9" memberName="groupComponent2"
-                  virtualName="" explicitFocusOrder="0" pos="8 384 576 88" title="Tone generator setup"/>
+                  virtualName="" explicitFocusOrder="0" pos="8 504 576 88" title="Tone generator setup"/>
   <GROUPCOMPONENT name="new group" id="1222bd71541cf06c" memberName="groupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="8 0 576 384" title="Audio device setup"/>
+                  virtualName="" explicitFocusOrder="0" pos="8 0 576 504" title="Audio device setup"/>
   <GENERICCOMPONENT name="new component" id="29e3f1f9451b331e" memberName="component"
                     virtualName="AudioDeviceSelectorComponent" explicitFocusOrder="0"
-                    pos="16 16 560 360" class="Component" params="deviceManager, 0, 2, 0, 2, true, false, true, false"/>
+                    pos="16 16 560 480" class="Component" params="deviceManager, 0, 2, 0, 2, true, false, true, false"/>
   <LABEL name="new label" id="5cd9a1d9edd1faf4" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="16 400 184 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Tone generator buffer size:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="16 520 184 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Tone generator buffer size:"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15" kerning="0" bold="0" italic="0"
+         justification="33"/>
   <COMBOBOX name="new combo box" id="b05cbf188f7829b6" memberName="comboBox"
-            virtualName="" explicitFocusOrder="0" pos="208 400 88 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="208 520 88 24" editable="0"
             layout="33" items="256&#10;512&#10;1024" textWhenNonSelected=""
             textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="cafc622874d86d1" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="368 400 112 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="368 520 112 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Thread number:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
+         fontsize="15" kerning="0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="7d6c8153f5c57891" memberName="comboBox2"
-            virtualName="" explicitFocusOrder="0" pos="488 400 64 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="488 520 64 24" editable="0"
             layout="33" items="1&#10;2&#10;3&#10;4" textWhenNonSelected=""
             textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="7c1bebf3130d00af" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="240 432 240 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="240 552 240 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Tone generator numbers per thread:" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
+         fontsize="15" kerning="0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="13fcce3e8814443d" memberName="comboBox3"
-            virtualName="" explicitFocusOrder="0" pos="488 432 64 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="488 552 64 24" editable="0"
             layout="33" items="32&#10;64&#10;128" textWhenNonSelected=""
             textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>

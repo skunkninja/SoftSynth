@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.1.2
+  Created with Projucer version: 5.2.0
 
   ------------------------------------------------------------------------------
 
@@ -60,7 +60,7 @@ public:
 
 //==============================================================================
 MainContentComponent::MainContentComponent ()
-    : juceMidiCallBack(this)
+    : juceMidiCallBack(this, &juceAudioCallBack)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -135,7 +135,7 @@ void MainContentComponent::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::white);
+    g.fillAll (Colours::brown);
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -243,7 +243,7 @@ BEGIN_JUCER_METADATA
                  variableInitialisers="juceMidiCallBack(this)" snapPixels="8"
                  snapActive="1" snapShown="1" overlayOpacity="0.330" fixedSize="1"
                  initialWidth="320" initialHeight="480">
-  <BACKGROUND backgroundColour="ffffffff"/>
+  <BACKGROUND backgroundColour="ffa52a2a"/>
   <TEXTBUTTON name="new button" id="3a1af5155dc28d3f" memberName="textButton"
               virtualName="" explicitFocusOrder="0" pos="8 16 120 32" buttonText="Audio Setup"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>

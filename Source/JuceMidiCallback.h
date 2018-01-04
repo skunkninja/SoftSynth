@@ -3,6 +3,7 @@
 
 #include "JuceHeader.h"
 #include "juce_audio_devices/juce_audio_devices.h"
+#include "JuceAudioCallBack.h"
 
 enum
 {
@@ -14,7 +15,7 @@ class CJuceMidiCallback :
     public MidiInputCallback
 {
 public:
-    CJuceMidiCallback(MessageListener *listener);
+    CJuceMidiCallback(MessageListener *listener, CJuceAudioCallBack *audiocallback);
     ~CJuceMidiCallback(void);
     void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message);
     //void SetSoftSynth(CMidiLayer *softSynth_);
@@ -22,6 +23,7 @@ protected:
     //CMidiLayer *pSoftSynth;
     
     MessageListener *localListener;
+	CJuceAudioCallBack *localaudiocallback;
 };
 
 #endif

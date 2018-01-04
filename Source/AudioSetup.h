@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.1
+  Created with Projucer version: 5.2.0
 
   ------------------------------------------------------------------------------
 
@@ -17,8 +17,7 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_HEADER_DC06BDD7EC824B91__
-#define __JUCE_HEADER_DC06BDD7EC824B91__
+#pragma once
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
@@ -37,7 +36,7 @@
                                                                     //[/Comments]
 */
 class CAudioSetup  : public Component,
-                     public ComboBoxListener
+                     public ComboBox::Listener
 {
 public:
     //==============================================================================
@@ -77,5 +76,3 @@ private:
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
-
-#endif   // __JUCE_HEADER_DC06BDD7EC824B91__
