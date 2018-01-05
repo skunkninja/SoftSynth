@@ -214,13 +214,17 @@ void MainContentComponent::handleMessage(const Message& message)
 {
     CCustomMessage *tmpMessage = (CCustomMessage *)&message;
     int type = tmpMessage->getType();
-
+	MidiOutput *tmpOut = audioDeviceManager.getDefaultMidiOutput();
     switch (type) {
         case MSG_SOUND_ON:
-            juceAudioCallBack.setPlayEnable(true);
+            //juceAudioCallBack.setPlayEnable(true);
+			if (tmpOut != nullptr)
+				tmpOut->sendMessageNow(MidiMessage(0x90, 0x40, 0x7f));
             break;
         case MSG_SOUND_OFF:
-            juceAudioCallBack.setPlayEnable(false);
+            //juceAudioCallBack.setPlayEnable(false);
+			if (tmpOut != nullptr)
+				tmpOut->sendMessageNow(MidiMessage(0x90, 0x40, 0x00));
             break;
         default:
             break;
@@ -240,9 +244,9 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="MainContentComponent" componentName=""
                  parentClasses="public Component, public MessageListener" constructorParams=""
-                 variableInitialisers="juceMidiCallBack(this)" snapPixels="8"
-                 snapActive="1" snapShown="1" overlayOpacity="0.330" fixedSize="1"
-                 initialWidth="320" initialHeight="480">
+                 variableInitialisers="juceMidiCallBack(this, &amp;juceAudioCallBack)"
+                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
+                 fixedSize="1" initialWidth="320" initialHeight="480">
   <BACKGROUND backgroundColour="ffa52a2a"/>
   <TEXTBUTTON name="new button" id="3a1af5155dc28d3f" memberName="textButton"
               virtualName="" explicitFocusOrder="0" pos="8 16 120 32" buttonText="Audio Setup"

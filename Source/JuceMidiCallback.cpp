@@ -24,14 +24,14 @@ void CJuceMidiCallback::handleIncomingMidiMessage(MidiInput* source, const MidiM
         if(message.isNoteOn())
         {
 
-            //pMsg = new CCustomMessage(MSG_SOUND_ON, 0, 0, 0, NULL);//
-            //localListener->postMessage(pMsg);
+            pMsg = new CCustomMessage(MSG_SOUND_ON, 0, 0, 0, NULL);//
+            localListener->postMessage(pMsg);
 			localaudiocallback->setPlayEnable(true);
         }
         else if(message.isNoteOff())
         {
-            //pMsg = new CCustomMessage(MSG_SOUND_OFF, 0, 0, 0, NULL);//
-            //localListener->postMessage(pMsg);
+            pMsg = new CCustomMessage(MSG_SOUND_OFF, 0, 0, 0, NULL);//
+            localListener->postMessage(pMsg);
 			localaudiocallback->setPlayEnable(false);
         }
     }

@@ -40,13 +40,13 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2015 targetFolder="Builds/VisualStudio2015">
+    <VS2015 targetFolder="Builds/VisualStudio2015" windowsTargetPlatformVersion="8.1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="1" optimisation="1" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
                        characterSet="Unicode" debugInformationFormat="ProgramDatabase"
                        enablePluginBinaryCopyStep="0"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
                        isDebug="0" optimisation="3" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
                        characterSet="Unicode" debugInformationFormat="ProgramDatabase"
                        enablePluginBinaryCopyStep="0" linkTimeOptimisation="1"/>
@@ -66,32 +66,6 @@
         <MODULEPATH id="juce_audio_utils" path="../JUCE-5.2.0/modules"/>
       </MODULEPATHS>
     </VS2015>
-    <VS2013 targetFolder="Builds/VisualStudio2013">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
-                       characterSet="Unicode" debugInformationFormat="ProgramDatabase"
-                       enablePluginBinaryCopyStep="0"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="SoftSynth" headerPath="../../Source/DSPIns&#10;../../../rwalib/juce"
-                       characterSet="Unicode" debugInformationFormat="ProgramDatabase"
-                       enablePluginBinaryCopyStep="0" linkTimeOptimisation="1"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_gui_extra" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_graphics" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_events" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_core" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../JUCE-5.2.0/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../JUCE-5.2.0/modules"/>
-      </MODULEPATHS>
-    </VS2013>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SoftSynth"
